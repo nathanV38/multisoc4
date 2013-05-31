@@ -8,7 +8,8 @@ class AuthenticationsController < ApplicationController
     if @authentication.save
       redirect_to authentications_url, :notice => "Successfully created authentication."
     else
-      render :action => 'new'
+		render :action => 'new'
+		
     end
   end
 
@@ -25,6 +26,11 @@ class AuthenticationsController < ApplicationController
   def current_user_temp
 		omni = request.env["omniauth.auth"]
 		@current_user ||= User.find_by_email(omni['info']['email'])
+  end
+  
+  def failure
+	#raise omni = request.env["omniauth.auth"].to_yaml
+	redirect_to authentications_url, :notice => "Il y a eu un pb -> failure." + request.env["omniauth.auth"].to_yaml
   end
   
   def twitter
@@ -83,6 +89,7 @@ class AuthenticationsController < ApplicationController
 	#		 sign_in_and_redirect current_user
 		 
 		 elsif current_user_temp
+			 current_user_temp.skip_confirmation! #pour éviter le mail de conf
 			 token = omni['credentials'].token
 			 token_secret = omni['credentials'].secret
 			 
@@ -94,6 +101,8 @@ class AuthenticationsController < ApplicationController
 		 
 		 else
 			 user = User.new
+			 #pour éviter la confirmation par mail
+			 user.skip_confirmation!
 			 user.email = omni['info']['email']
 			 
 			 user.apply_omniauth(omni)
@@ -134,6 +143,7 @@ class AuthenticationsController < ApplicationController
 	 #		 sign_in_and_redirect current_user
 		 
 		 elsif current_user_temp
+			 current_user_temp.skip_confirmation! #pour éviter le mail de conf
 			 token = omni['credentials'].token
 			 token_secret = omni['credentials'].secret
 			 
@@ -145,6 +155,9 @@ class AuthenticationsController < ApplicationController
 		 
 		 else
 			 user = User.new
+			 #pour éviter la confirmation par mail
+			 user.skip_confirmation!
+			 
 			 user.email = omni['info']['email']
 			 
 			 user.apply_omniauth(omni)
