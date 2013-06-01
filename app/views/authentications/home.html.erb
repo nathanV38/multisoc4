@@ -3,10 +3,22 @@
  <%= link_to 'Edit profile', edit_user_registration_path %> |
  <%= link_to 'Authentications', authentications_path %> |
  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+ <% if Authentication.find_by_user_id(current_user[:id]) != nil %>
+	<%#= raise Authentication.find_by_user_id(current_user[:id])["provider"].to_yaml %>
+	connecté par <%= session["provider"] %>
+	<%#= raise current_authentication.to_yaml %>
+	
+ <% else%>
+	<li><%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %></li>
+	<li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
+	<li><%= link_to "Google", user_omniauth_authorize_path(:google_oauth2) %></li>
+	
+ <% end %>
 <% else %>
  <%= link_to "Sign up", new_user_registration_path %> |
  <%= link_to "Login", new_user_session_path %>
  <li><%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %></li>
  <li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
  <li><%= link_to "Google", user_omniauth_authorize_path(:google_oauth2) %></li>
+ 
 <% end %>

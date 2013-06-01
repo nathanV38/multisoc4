@@ -37,7 +37,7 @@ class AuthenticationsController < ApplicationController
      #raise omni = request.env["omniauth.auth"].to_yaml
 	 omni = request.env["omniauth.auth"]
 	 authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
-	 
+	 session["provider"] = omni['provider']
 	 
 	 if authentication
 		flash[:notice] = "Logged in Successfully"
@@ -71,6 +71,7 @@ class AuthenticationsController < ApplicationController
 	 omni = request.env["omniauth.auth"]
 	 #raise omni['info']['email'].to_yaml
 	 authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
+	 session["provider"] = omni['provider']
 	 
 	 #raise "current_user_temp"+current_user_temp.to_yaml
 	 
@@ -125,6 +126,7 @@ class AuthenticationsController < ApplicationController
 	 omni = request.env["omniauth.auth"]
 	 #raise omni['info']['email'].to_yaml
 	 authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
+	 session["provider"] = omni['provider']
 	 
 	 #raise "current_user_temp"+current_user_temp.to_yaml
 	 
