@@ -18,6 +18,11 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  
+  gem "therubyracer"
+  gem "less-rails"
+  gem 'twitter-bootstrap-rails'
+  
 end
 
 gem 'jquery-rails'
@@ -48,3 +53,5 @@ gem 'figaro'
 gem 'nifty-generators'
 
 gem "mocha", :group => :test
+
+gem 'rails_bootstrap_navbar'

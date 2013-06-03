@@ -9,7 +9,7 @@
 	<%#= raise current_authentication.to_yaml %>
 	
  <% else%>
-	<li><%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %></li>
+	
 	<li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
 	<li><%= link_to "Google", user_omniauth_authorize_path(:google_oauth2) %></li>
 	
@@ -17,7 +17,7 @@
 <% else %>
  <%= link_to "Sign up", new_user_registration_path %> |
  <%= link_to "Login", new_user_session_path %>
- <li><%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %></li>
+ 
  <li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
  <li><%= link_to "Google", user_omniauth_authorize_path(:google_oauth2) %></li>
  

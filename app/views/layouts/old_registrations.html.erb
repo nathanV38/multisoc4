@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MultiSoc</title>
+  <title>Inscription</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -13,37 +13,7 @@
 
 
 
-<%= nav_bar :fixed => :top, :brand => "CoDressMe", :responsive => true do %>
-	 
-    <% if user_signed_in? %>
-		 <% menu_group :pull => :right do %>
-			<em class="navbar" > Bienvenue <strong><%= current_user.email %></strong> ! </em>
-			
-			<!-- BOUTON RESEAU SOCIAUX -->
-			<% if Authentication.find_by_user_id(current_user[:id]) != nil %>
-				<% if session["provider"].blank? %>
-					<%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %>
-				<% end %>
-			<% else %>
-				<%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %>
-			<% end %>
-			 <%= link_to 'Modifier mon profile', edit_user_registration_path , :class => "btn" %>
-			 <%= link_to "Me déconnecter", destroy_user_session_path, method: :delete , :class => "btn" %>
-		<% end %>
-    <% else %>	
-        <% menu_group :pull => :right, :class => "test" do %>
-            
-            <%= form_for(:user, :url => user_session_path, :html => {:class => "navbar-form"}) do |f| %>
-			  <%= f.email_field :email, :autofocus => true , :class => "span2", :placeholder => "email"  %>
-			  <%= f.password_field :password , :class => "span2", :placeholder => "mot de passe" %>
-			  <%= f.submit "Je me connecte" , :class => "btn" %>
-			  <a href="#myModal" role="button" class="btn" data-toggle="modal">Connection Facebook</a>
-			  <%#= link_to "Connection Facebook", user_omniauth_authorize_path(:facebook), :class => "btn" %>
-			<% end %>
-			
-        <% end %>
-    <% end %>
-<% end %>
+
 
 
 

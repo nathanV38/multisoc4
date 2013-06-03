@@ -1,4 +1,6 @@
 class AuthenticationsController < ApplicationController
+#layout "inscription"
+
   def index
     @authentications = Authentication.all
   end
@@ -40,9 +42,17 @@ class AuthenticationsController < ApplicationController
 	 session["provider"] = omni['provider']
 	 
 	 if authentication
-		flash[:notice] = "Logged in Successfully"
-		sign_in_and_redirect User.find(authentication.user_id)
-	
+		# si twitter est en attente dans l'email -> demande de confirmer pass ou de renvoyer autre email
+		userassociated = User.find(authentication.user_id)
+		if userassociated != nil
+			if userassociated.confirmation_token != nil && userassociated.confirmed_at == nil
+				flash[:notice] = "confirmer votre inscription par email pour pouvoir vous connecter"
+				redirect_to new_user_confirmation_path
+			else
+				flash[:notice] = "Logged in Successfully"
+				sign_in_and_redirect User.find(authentication.user_id)
+			end
+		end
 	
 	 elsif current_user
 		 token = omni['credentials'].token
@@ -55,6 +65,7 @@ class AuthenticationsController < ApplicationController
 	 else
 		 user = User.new
 		 user.apply_omniauth(omni)
+		 user.haslocalpw=false
 		 
 		 if user.save
 			 flash[:notice] = "Logged in."
@@ -105,7 +116,7 @@ class AuthenticationsController < ApplicationController
 			 #pour éviter la confirmation par mail
 			 user.skip_confirmation!
 			 user.email = omni['info']['email']
-			 
+			 user.haslocalpw=false
 			 user.apply_omniauth(omni)
 			 
 			 #raise user.to_yaml
@@ -161,7 +172,7 @@ class AuthenticationsController < ApplicationController
 			 user.skip_confirmation!
 			 
 			 user.email = omni['info']['email']
-			 
+			 user.haslocalpw=false
 			 user.apply_omniauth(omni)
 			 
 			 #raise user.to_yaml

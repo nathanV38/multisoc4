@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inscription</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+
+
+<%#= nav_bar :fixed => :top, :brand => link_to(image_tag("CDM.png", :size => "50x50", :alt => "CoDressMe_logo"), root_path),  :responsive => true do %>
+<%# end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container" id="main-container">
+
+	<div class="row-fluid">
+		<div class="span2 logosession">
+			<%= link_to(image_tag("CDM.png", :size => "150x150", :alt => "CoDressMe_logo"), root_path) %>
+		</div>
+		
+		<div class="offset3">
+			<%= yield %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h4 id="myModalLabel">Connecte-toi avec ton réseau social favori !</h4>
+</div>
+<div class="modal-body">
+	
+		<div class="row" ><%= link_to "Connecte-toi avec Facebook", user_omniauth_authorize_path(:facebook), :class => "btn span3 offset1" %> </div>
+		   </br>
+		   <div class="row" ><%= link_to "Connecte-toi avec Google", user_omniauth_authorize_path(:google_oauth2), :class => "btn span3 offset1" %> </div>
+		  </br></br>
+		</div>
+
+		<p class="offset1">Et augmente tes chances de trouver preneur pour tes guenilles !</p>
+	
+<div class="modal-footer">
+
+	<button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+</div>
+</div>
+<!-- FIN Modal -->
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+<footer>
+	<%= nav_bar :fixed => :bottom do %>
+    <%= menu_item "Home", root_path %>
+    <%= menu_item "About Us", root_path %>
+    <%= menu_item "Contact", root_path %>
+
+    <%= menu_divider %>
+
+    <%= menu_item "Edit Profile", root_path %>
+    <%= menu_item "Account Settings", root_path %>
+    <%= menu_item "Log Out", root_path %>
+<% end %>
+</footer>
+
+
+</html>

@@ -11,3 +11,21 @@
  *= require_self
  *= require_tree .
  */
+
+ #main-container {
+    margin-top: 80px;
+}
+
+.logosession{
+margin-bottom:20px;}
+
+.btn span4 socialntwk{
+margin:5px;
+}
+
+em.navbar{
+color:pink;}
+
+.btn span4 retour{
+margin:0px;
+}

@@ -1,0 +1,26 @@
+         authentications GET      /authentications(.:format)             authentications#index
+                         POST     /authentications(.:format)             authentications#create
+      new_authentication GET      /authentications/new(.:format)         authentications#new
+     edit_authentication GET      /authentications/:id/edit(.:format)    authentications#edit
+          authentication GET      /authentications/:id(.:format)         authentications#show
+                         PUT      /authentications/:id(.:format)         authentications#update
+                         DELETE   /authentications/:id(.:format)         authentications#destroy
+        new_user_session GET      /users/login(.:format)                 devise/sessions#new
+            user_session POST     /users/login(.:format)                 devise/sessions#create
+    destroy_user_session DELETE   /users/logout(.:format)                devise/sessions#destroy
+ user_omniauth_authorize GET|POST /users/auth/:provider(.:format)        authentications#passthru {:provider=>/facebook|twitter|google_oauth2/}
+  user_omniauth_callback GET|POST /users/auth/:action/callback(.:format) authentications#(?-mix:facebook|twitter|google_oauth2)
+           user_password POST     /users/password(.:format)              devise/passwords#create
+       new_user_password GET      /users/password/new(.:format)          devise/passwords#new
+      edit_user_password GET      /users/password/edit(.:format)         devise/passwords#edit
+                         PUT      /users/password(.:format)              devise/passwords#update
+cancel_user_registration GET      /users/cancel(.:format)                registrations#cancel
+       user_registration POST     /users(.:format)                       registrations#create
+   new_user_registration GET      /users/sign_up(.:format)               registrations#new
+  edit_user_registration GET      /users/edit(.:format)                  registrations#edit
+                         PUT      /users(.:format)                       registrations#update
+                         DELETE   /users(.:format)                       registrations#destroy
+       user_confirmation POST     /users/confirmation(.:format)          devise/confirmations#create
+   new_user_confirmation GET      /users/confirmation/new(.:format)      devise/confirmations#new
+                         GET      /users/confirmation(.:format)          devise/confirmations#show
+                    root          /                                      authentications#home
