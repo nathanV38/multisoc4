@@ -1,10 +1,29 @@
-<h2>Inscription</h2>
-</br
+<h2>Rejoins-nous !</h2>
+
+<p>Armoire pleine mais rien à te mettre ? </br>Redonne des couleurs à ta garde-robe sur notre site de vente, achat et échange de vêtements !</p>
+
+</br>
+
+
+<div class="span12">
+   <%= link_to "Connecte-toi avec Facebook", user_omniauth_authorize_path(:facebook), :class => "btn span4 socialntwk" %> 
+</div>
+   </br></br>
+ <div class="span12">  
+   <div ><%= link_to "Connecte-toi avec Google", user_omniauth_authorize_path(:google_oauth2), :class => "btn span4 socialntwk" %> </div>
+</div>
+  </br></br></br></br>
+  
+  
+
+<p>Ou inscris-toi avec ton adresse email</p>
+
+</br>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div>
-  <%= f.email_field :email, :autofocus => true, :placeholder => "email", :class => "span4" %></div>
+  <%= f.email_field :email, :autofocus => true, :placeholder => "adresse email (ne sera pas publiée)", :class => "span4" %></div>
 
   <div>
   <%= f.password_field :password, :placeholder => "mot de passe", :class => "span4" %></div>
@@ -12,14 +31,32 @@
   <div>
   <%= f.password_field :password_confirmation, :placeholder => "confirmation mot de passe", :class => "span4" %></div>
 </br>
-  <div><%= f.submit "M'inscrire", :class => "btn span4" %></div>
+  <div><%= f.submit "Inscris-toi !", :class => "btn span4" %></div>
+  
+  <br>
+  <%= f.check_box :okmajeur, :style => "float:left;" %>
+  <%= f.label :okmajeur, " J'ai plus de 18 ans".html_safe, :style => "float:left;" %>
+  <br>
+  
+  <br>
+  <%= f.check_box :terms, :style => "float:left;" %>
+  <%= f.label :terms, " J'accepte les #{link_to 'Termes et Conditions', root_path} et les #{link_to 'Politiques de Confidentialité', root_path}".html_safe, :style => "float:left;" %>
+  <br>
+  
+  <br>
+  <%= f.check_box :Newsletter, {checked: true, :style => "float:left;"} %>
+  <%= f.label :Newsletter, "Souscrire à notre newsletter".html_safe, :style => "float:left;" %>
+  <br>
 <% end %>
 
 
 </br></br>
 
-<%= button_to "Retour à l'accueil", :back, :class => "btn span4" %>
+<%#= button_to "Retour à l'accueil", :back, :class => "btn span4" %>
 <div><%#= link_to "Retour à l'accueil", root_path, :class => "btn span4" %></div>
 
+
+
+<p>Déjà membre ? <%= link_to "Connecte-toi ici", user_session_path %>
 
 <%#= render "devise/shared/links" %>

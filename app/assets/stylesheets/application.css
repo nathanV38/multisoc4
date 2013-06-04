@@ -16,16 +16,77 @@
     margin-top: 80px;
 }
 
+body{
+#min-height: 100%;
+margin-bottom:0px;
+}
+
 .logosession{
 margin-bottom:20px;}
 
-.btn span4 socialntwk{
-margin:5px;
+a.btn.span4.socialntwk{
+margin-bottom:10px;
+margin-left: 0px;
 }
+
+div.span12{margin-left: 0px;}
 
 em.navbar{
 color:pink;}
 
 .btn span4 retour{
-margin:0px;
+#margin:0px;
+}
+
+
+
+
+/* Footer
+-------------------------------------------------- */
+.footer {
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 70px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #f5f5f5;
+ height:100px;
+  
+}
+.footer p {
+  margin-bottom: 0;
+  color: #777;
+}
+.footer-links {
+  margin: 10px 0;
+}
+.footer-links li {
+  display: inline;
+  padding: 0 2px;
+}
+.footer-links li:first-child {
+  padding-left: 0;
+}
+
+/* Header
+-------------------------------------------------- */
+.header {
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 70px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #f5f5f5;
+}
+.header p {
+  margin-bottom: 0;
+  color: #777;
+}
+.header-links {
+  margin: 10px 0;
+}
+.header-links li {
+  display: inline;
+  padding: 0 2px;
+}
+.header-links li:first-child {
+  padding-left: 0;
 }

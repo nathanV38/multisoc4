@@ -4,16 +4,18 @@
 <h2>Welcome Back !</h2>
 <p>Nous sommes heureux de te retrouver parmi nous !</p>
 </br>
-<div>
-   <div ><%= link_to "Connecte-toi avec Facebook", user_omniauth_authorize_path(:facebook), :class => "btn span4 socialntwk" %> </div>
+<div class="span12">
+   <%= link_to "Connecte-toi avec Facebook", user_omniauth_authorize_path(:facebook), :class => "btn span4 socialntwk" %> 
+</div>
    </br></br>
+ <div class="span12">  
    <div ><%= link_to "Connecte-toi avec Google", user_omniauth_authorize_path(:google_oauth2), :class => "btn span4 socialntwk" %> </div>
 </div>
   </br></br></br></br>
   
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div>  <%= f.label "ou connecte-toi à ton compte :" %>
-  <%= f.email_field :email, :autofocus => true, :placeholder => "email", :class => "span4" %> </div>
+  <%= f.email_field :email, :autofocus => true, :placeholder => "adresse email", :class => "span4" %> </div>
   <div>  <%= f.password_field :password, :placeholder => "mot de passe", :class => "span4"  %> </div>
 
   <div ><%= f.submit "Envoyer", :class => "btn span4" %></div>

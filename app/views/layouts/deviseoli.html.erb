@@ -11,6 +11,8 @@
 
 
 
+
+
 <%#= nav_bar :fixed => :top, :brand => link_to(image_tag("CDM.png", :size => "50x50", :alt => "CoDressMe_logo"), root_path),  :responsive => true do %>
 <%# end %>
 
@@ -29,7 +31,7 @@
 
 
 
-<div class="container" id="main-container">
+<div class="container-fluid no-padding fill fill-height" id="main-container">
 
 	<div class="row-fluid">
 		<div class="span2 logosession">
@@ -74,6 +76,29 @@
 
 
 
+<footer class="footer  navbar navbar-bottom">
+        <ul class="footer-links">
+		  <li><%= link_to(image_tag("facebook.jpg", :size => "40x40", :alt => "facebook_logo"), "http://www.facebook.com/codressme") %> </li>
+		  <li><%= link_to(image_tag("twitter.jpg", :size => "40x40", :alt => "facebook_logo"), "http://www.twitter.com/codressme") %> </li>
+		  <li><%= link_to(image_tag("gplus.jpg", :size => "40x40", :alt => "facebook_logo"), "http://www.googleplus.com/codressme") %> </li>
+		  <li><%= link_to(image_tag("pinterest.jpg", :size => "40x40", :alt => "facebook_logo"), "http://www.pinterest.com/codressme") %> </li>
+		  <li><%= link_to(image_tag("newsletter.jpg", :size => "40x40", :alt => "facebook_logo"), "newsletter") %> </li>
+        </ul>
+		
+		<ul class="footer-links">
+		  <li><%= link_to "A propos de nous", "http://www.facebook.com/codressme" %> </li>
+		  <li class="muted">|</li>
+		  <li><%= link_to "Contact", "http://www.facebook.com/codressme" %> </li>
+		  <li class="muted">|</li>
+		  <li><%= link_to "Termes et conditions", "http://www.facebook.com/codressme" %> </li>
+		  <li class="muted">|</li>
+		  <li><%= link_to "Politique de confidentialité", "http://www.facebook.com/codressme" %> </li>
+        </ul>
+		</br>
+		<em>@2013 <a href="http://codressme.com" target="_blank">www.codressme.com</a>. Tous droits reservés. v1.11 </em>
+      
+</footer>
+
 
 
 
@@ -83,19 +108,14 @@
 
 </body>
 
-<footer>
-	<%= nav_bar :fixed => :bottom do %>
-    <%= menu_item "Home", root_path %>
-    <%= menu_item "About Us", root_path %>
-    <%= menu_item "Contact", root_path %>
 
-    <%= menu_divider %>
 
-    <%= menu_item "Edit Profile", root_path %>
-    <%= menu_item "Account Settings", root_path %>
-    <%= menu_item "Log Out", root_path %>
-<% end %>
-</footer>
+
+
+
+
+
+
 
 
 </html>

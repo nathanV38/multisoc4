@@ -18,14 +18,21 @@
 
   </br>
   <% if resource.haslocalpw == true %>	
-	  <div> <i>(l	our valider tout changement)</i><br />
+	  <div> <i>(le mot de passe actuel est nécessaire pour valider tout changement)</i><br />
 	  <%= f.password_field :current_password, :placeholder => "mot de passe actuel", :class => "span3" %></div>
   <% end %>	
   
   </br>
   <div><%= f.submit "Mise à jour", :class => "btn span3" %></div>
   
-  
+  <br>
+  <% if current_user.Newsletter == true %>
+	<%= f.check_box :Newsletter, {checked: true, :style => "float:left;"} %>
+  <% else %>
+	<%= f.check_box :Newsletter, {checked: false, :style => "float:left;"} %>
+  <% end %>
+  <%= f.label :Newsletter, "Souscrire à notre newsletter".html_safe, :style => "float:left;" %>
+  <br>
   
 <% end %>
 
