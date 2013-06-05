@@ -23,13 +23,16 @@
   <%= devise_error_messages! %>
 
   <div>
-  <%= f.email_field :email, :autofocus => true, :placeholder => "adresse email (ne sera pas publiée)", :class => "span4" %></div>
+  <%= f.email_field :email, :required => true, :autofocus => true, :placeholder => "adresse email (ne sera pas publiée)", :class => "span4" %></div>
 
   <div>
-  <%= f.password_field :password, :placeholder => "mot de passe", :class => "span4" %></div>
+  <%= f.text_field :nickname, :required => true, :autofocus => true, :placeholder => "nom d'utilisateur sur codressme", :class => "span4" %></div>
+  
+  <div>
+  <%= f.password_field :password, :placeholder => "mot de passe", :class => "span4", :required => true %></div>
 
   <div>
-  <%= f.password_field :password_confirmation, :placeholder => "confirmation mot de passe", :class => "span4" %></div>
+  <%= f.password_field :password_confirmation, :required => true, :placeholder => "confirmation mot de passe", :class => "span4" %></div>
 </br>
   <div><%= f.submit "Inscris-toi !", :class => "btn span4" %></div>
   

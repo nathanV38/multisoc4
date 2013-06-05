@@ -55,3 +55,4 @@ gem 'nifty-generators'
 gem "mocha", :group => :test
 
 gem 'rails_bootstrap_navbar'
+gem 'fancybox2-rails', '~> 0.2.4'

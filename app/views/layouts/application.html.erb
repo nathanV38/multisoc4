@@ -17,12 +17,28 @@
 	 
     <% if user_signed_in? %>
 		 <% menu_group :pull => :right do %>
-			<em class="navbar" > Bienvenue <strong><%= current_user.email %></strong> ! </em>
+		    
+			<em class="navbar" > Bienvenue, 
+				<strong>
+					<% if current_user.nickname == nil %>
+						renseigne vite ton surnom </strong>  !
+					<% else %>
+						<%= current_user.nickname %> 
+							<% if session["provider"].blank? %>
+								</strong>  !
+							<% else %>
+							</strong>  , connectée par <%= session["provider"].split("_").first %> !
+							<% end%>
+					<% end %>
+					
+				
+			</em>
 			
 			<!-- BOUTON RESEAU SOCIAUX -->
 			<% if Authentication.find_by_user_id(current_user[:id]) != nil %>
 				<% if session["provider"].blank? %>
-					<%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %>
+					<%#= link_to "me connecter par Facebook", user_omniauth_authorize_path(:facebook), :class => "btn" %>
+					<a href="#myModal" role="button" class="btn" data-toggle="modal">Me connecter par Facebook</a>
 				<% end %>
 			<% else %>
 				<%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %>
@@ -105,8 +121,6 @@
 
 
 
-
-
 <footer class="footer navbar navbar-bottom">
         <ul class="footer-links">
 		  <li><%= link_to(image_tag("facebook.jpg", :size => "40x40", :alt => "facebook_logo"), "http://www.facebook.com/codressme") %> </li>
@@ -130,7 +144,96 @@
       
 </footer>
 
+<% if user_signed_in? %>
+	
+	<% if current_user.nickname==nil %>
+		
+		
+	<!-- Modal2 -->
+			<div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Il ne manque que ton surnom !</h3>
+			</div>
+			<div class="modal-body">
+			<p>La communauté CoDressMe te connaitra par ce nom là.</p>
+			<%= form_for(@user, :as => :user, :url => registration_path(:user), :html => { :method => :put }) do |f| %>
+			 
+			 <div>
+			 </br>
+			  <%= f.text_field :nickname, :required => true, :autofocus => true, :placeholder => "Surnom pour CoDressMe", :class => "offset1 span3 " %></div>
+			 
+			  <% if current_user.haslocalpw == true %>	
+				  <div> <i>(le mot de passe actuel est nécessaire pour valider tout changement)</i><br />
+				  <%#= f.password_field :current_password, :required => true, :placeholder => "mot de passe actuel", :class => "span3" %></div>
+				  <%#= f.hidden_field(:current_password, :value => current_user.password) %>
+				  <%= f.hidden_field(:email, :value => current_user.email) %>
+			  <% end %>	
+			 
+			  <div><%= f.submit "Enregistrer!", :class => "btn btn-primary offset1 span3 " %></div>
+			  <% end %>
+			  
+			  <p>Oups! J'ai oublié <%= link_to "mon mot de passe !", new_user_password_path %></p>
+			</div>
+ 
+			</div>
 
+	<!-- FIN Modal2 -->	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<script type = "text/javascript">
+		/*
+		$(document).ready(function() {	
+			$.fancybox(
+				'<h2>Nom utilisateur </h2><p>Choisis un nom sympa pour CoDressMe !</p>',
+				{
+						'autoDimensions'	: false,
+					'width'         		: 'auto',
+					'height'        		: 'auto',
+					'transitionIn'		: 'none',
+					'transitionOut'		: 'none'
+				}
+			);
+			
+		});
+		*/
+		
+		
+			
+			
+		$('#myModal2').modal('show');
+
+		</script>
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	<% end %>
+<% end %>
 
 
 

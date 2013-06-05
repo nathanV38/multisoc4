@@ -5,20 +5,29 @@
 
   <div></br>
   <%= f.email_field :email, :autofocus => true, :class => "span3" %></div>
+  
+  <div></br>
+  <%= f.text_field :nickname, :placeholder => "surnom CoDressMe", :class => "span3" %></div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 </br>
-  <div> <i>(laisser vide si le mot de passe est ok )</i><br />
-  <%= f.password_field :password, :autocomplete => "off", :placeholder => "mot de passe", :class => "span3" %></div>
 
+	
+  <div> 
+	<% if resource.haslocalpw == true %>	
+		<i>(si tu veux changer ton mot de passe, renseigne-le et confirme-le. Ton mot de passe actuel sera requis pour la validation)</i><br/>
+	<% else %>
+		<i>(tu peux créer un mot de passe pour te connecter ultérieurement à CoDressMe par email)</i><br/>
+	<% end %>
+  <%= f.password_field :password, :autocomplete => "off", :placeholder => "mot de passe", :class => "span3" %></div>
   <div>
   <%= f.password_field :password_confirmation, :placeholder => "confirmation du mot de passe", :class => "span3" %></div>
 
   </br>
   <% if resource.haslocalpw == true %>	
-	  <div> <i>(le mot de passe actuel est nécessaire pour valider tout changement)</i><br />
+	  <div> <i>(le mot de passe actuel est nécessaire pour valider tout changement de mot de passe ou d'email)</i><br />
 	  <%= f.password_field :current_password, :placeholder => "mot de passe actuel", :class => "span3" %></div>
   <% end %>	
   
